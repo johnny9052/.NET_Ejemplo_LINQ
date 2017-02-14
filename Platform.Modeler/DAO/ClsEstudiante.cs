@@ -28,7 +28,8 @@ namespace Platform.Modeler.Modelo
         #region Funciones LINQ Basicas
 
 
-        public bool guardar(String codigo, String nombre, String apellido, int edad, String carrera, String semestre)
+        public bool guardar(String codigo, String nombre, 
+            String apellido, int edad, String carrera, String semestre)
         {
             try
             {
@@ -40,7 +41,7 @@ namespace Platform.Modeler.Modelo
                 est.edad = edad;
                 est.carrera = carrera;
                 est.semestre = semestre;
-
+                
                 db.estudiante.InsertOnSubmit(est);//ingresa el objeto temporal estudiante en la tabla
                 db.SubmitChanges();//se hace submit;
                 return true;
@@ -128,7 +129,8 @@ namespace Platform.Modeler.Modelo
         {
             try
             {
-                db.guardarEstudiante(codigo, nombre, apellido, Convert.ToInt32(edad), carrera, Convert.ToInt32(semestre));
+                db.guardarEstudiante(codigo, nombre, apellido, 
+                    Convert.ToInt32(edad), carrera, Convert.ToInt32(semestre));
                 return true;
             }
             catch (Exception ex)
@@ -142,19 +144,19 @@ namespace Platform.Modeler.Modelo
         public LinkedList<String> buscarP(String codigo)
         {            
             LinkedList<String> temp = new LinkedList<String>();
+            
+            /*El .single() me indica que va a recibir un solo registro, sin 
+             esto el var consulta no es capas de interpretar el registro que
+             retorna de la base de datos*/
+            var consulta = db.buscarEstudiante(codigo).Single();
 
-            var consulta = db.buscarEstudiante(codigo);
-            consulta.First();
-
-            foreach (var dato in consulta)
-            {
-                temp.AddLast(dato.codigo);
-                temp.AddLast(dato.nombre);
-                temp.AddLast(dato.apellido);
-                temp.AddLast(dato.edad.ToString());
-                temp.AddLast(dato.carrera);
-                temp.AddLast(dato.semestre);
-            }
+            temp.AddLast(consulta.codigo);
+            temp.AddLast(consulta.nombre);
+            temp.AddLast(consulta.apellido);
+            temp.AddLast(consulta.edad.ToString());
+            temp.AddLast(consulta.carrera);
+            temp.AddLast(consulta.semestre);
+            
 
             return temp;
         }

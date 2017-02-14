@@ -17,7 +17,7 @@ namespace EjercicioLINQ
     {
 
         ClsEstudiante estudiante;
-        clsValidaciones validacion;
+        //clsValidaciones validacion;
 
 
         #region constructores e inicializadores
@@ -26,7 +26,7 @@ namespace EjercicioLINQ
         {
             InitializeComponent();
             estudiante = new ClsEstudiante();
-            validacion = new clsValidaciones();
+            //validacion = new clsValidaciones();
         }
 
         private void estudianteBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -179,7 +179,7 @@ namespace EjercicioLINQ
             }
             else
             {
-                e.Handled = validacion.numeros(e.KeyChar); //ponga el valor ingresado en el campo de text
+               // e.Handled = validacion.numeros(e.KeyChar); //ponga el valor ingresado en el campo de text
             }
         }
 
@@ -225,7 +225,7 @@ namespace EjercicioLINQ
             String codigo = txtCodigo.Text;
 
             LinkedList<String> temp = new LinkedList<String>();
-            temp = estudiante.buscar(codigo);
+            temp = estudiante.buscarP(codigo);
 
             if (temp.Count > 0)
             {

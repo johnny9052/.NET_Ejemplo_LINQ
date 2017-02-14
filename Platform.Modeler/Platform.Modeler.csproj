@@ -54,8 +54,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntEstudiante.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\ClsEstudiante.cs" />
-    <Compile Include="Modelo\clsValidaciones.cs" />
+    <Compile Include="DAO\ClsEstudiante.cs" />
+    <Compile Include="DAO\clsValidaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
     <None Include="Entity\EntEstudiante.dbml.layout">
